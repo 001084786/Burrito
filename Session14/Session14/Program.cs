@@ -11,6 +11,35 @@ namespace Session14
     {
         static void Main(string[] args)
         {
+            Course[] courseList =
+            {
+                new Course("a", "a", 10.00),
+                new Course("b", "b", 10.00),
+                new Course("c", "c", 10.00)
+            };
+
+            Array.Sort(courseList);
+            Console.WriteLine(courseList);
+            Console.ReadKey();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /*
             DateTime d1 = DateTime.Now;
 
             Console.WriteLine("Test Address Class");
@@ -85,14 +114,13 @@ namespace Session14
             Console.WriteLine("    Is s1 == s2: " + (s1 == s2) + " - Expected: True");
             Console.WriteLine("    Is s1 == s3: " + (s1 == s3) + " - Expected: False");
             Console.ReadKey();
-
-
-
-
-
-
-
             Console.ReadKey();
+            */
+        }
+
+        static void DisplayOrder<T>(T x, T y) where T : IComparable<T>
+        {
+
         }
     }
 }
