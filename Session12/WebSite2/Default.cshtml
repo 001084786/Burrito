@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Home Page";
+}
+
+@{ 
+    // Create the variables...
+    // Remember: This password is just being shown to show the actual text being passed,
+    // In real applications you shouldn't show the password or the User.
+    var password = "";
+    var hashed = "";
+    var sha256 = "";
+    var sha1 = "";
+
+    var salt = "";
+
+    var hashedPassword = "";
+    var verify = false;
+
+    // If the request is a POST request, then
+    if (IsPost)
+    {
+        // Get the password
+        password = Request.Form["password"];
+
+        // Run the functions on the code
+        hashed = Crypto.Hash(password, "MD5");
+        sha256 = Crypto.SHA256(password);
+        sha1 = Crypto.SHA1(password);
+
+        salt = Crypto.GenerateSalt();
+
+        hashedPassword = Crypto.HashPassword(password);
+    }
+
+    <form method="post">
+        <p>Write the string as a password that would be encrypted using
+            <span style="color: #0094FF; font-family: Consolas;">
+                Crypto</span> class of ASP.NET Web Pages.</p>
+
+        <input type="password" name="password" autofocus />
+        <input type="submit" value="Submit" />
+    </form>
+
+    <div>
+        <p>Password: @password</p>
+        <p>MD5 Hashed result: @hashed</p>
+        <p>SHA256: @sha256</p>
+        <p>SHA1: @sha1</p>
+        <p>Salt: @salt</p>
+        <p>HashedPassword: @hashedPassword</p>
+        <p>Verify: @verify.ToString()</p>
+    </div>
+
+    /* ===== Observation =====
+     * I have observed that the same password will create the same hash, but a new unique salt will be generated each time.
+     * The salt is added onto the password and hashed to create a completely different UNIQUE result,
+     * making it hard to de-crypt the password.
+     */
+}
