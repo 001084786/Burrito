@@ -44,15 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Address.cs" />
-    <Compile Include="Classes\AddressEqualityComparer.cs" />
     <Compile Include="Classes\Course.cs" />
-    <Compile Include="Classes\CourseEqualityComparer.cs" />
     <Compile Include="Classes\Enrollment.cs" />
-    <Compile Include="Classes\EnrollmentEqualityComparer.cs" />
     <Compile Include="Classes\Person.cs" />
-    <Compile Include="Classes\PersonEqualityComparer.cs" />
+    <Compile Include="Classes\PersonEmailComparer.cs" />
+    <Compile Include="Classes\PersonHashSetComparer.cs" />
+    <Compile Include="Classes\PersonNameComparer.cs" />
+    <Compile Include="Classes\PersonTellComparer.cs" />
     <Compile Include="Classes\Student.cs" />
-    <Compile Include="Classes\StudentEqualityComparer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

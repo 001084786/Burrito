@@ -41,15 +41,15 @@ namespace Session14.Classes
         }
 
         //Constructor
-        public Student(string program, DateTime dateRegistered, string name, string email, string telNum, Address address, Enrollment enrollment)
-            : base(name, email, telNum, address)
+        public Student(string program, DateTime dateRegistered, int id, string name, string email, string telNum, Address address, Enrollment enrollment)
+            : base(id, name, email, telNum, address)
         {
             this.Program = program;
             this.DateRegistered = dateRegistered;
             this.Enrollment = enrollment;
         }
         public Student(string program, DateTime dateRegistered, Person p, Enrollment enrollment)
-            : this(program, dateRegistered, p.Name, p.Email, p.TelNum, p.Address, enrollment) { }
+            : this(program, dateRegistered, p.ID, p.Name, p.Email, p.TelNum, p.Address, enrollment) { }
 
         // toString()
         public override string ToString()

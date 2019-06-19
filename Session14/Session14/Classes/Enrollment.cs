@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Session14.Classes
 {
-    public class Enrollment
+    public class Enrollment : IComparable<Enrollment>
     {
         public int ID { get; set; }
         public DateTime DateEnrolled { get; set; }
@@ -52,6 +52,16 @@ namespace Session14.Classes
         public override string ToString()
         {
             return string.Format("{0} {1} {2} {3} {4}", ID, DateEnrolled.ToString("dd/MM/yyyy"), Grade, Semester, Course);
+        }
+
+        public int CompareTo(Enrollment obj)
+        {
+            if (obj == null)
+                return 1;
+            if (obj != null)
+                return this.ID.CompareTo(obj.ID);
+            else
+                throw new ArgumentException("Object is not an enrollment");
         }
     }
 }

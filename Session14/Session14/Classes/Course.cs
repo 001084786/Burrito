@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Session14.Classes
 {
-    public class Course
+    public class Course : IComparable<Course>
     {
         public String CourseCode { get; set; }
         public String CourseName { get; set; }
@@ -49,6 +49,16 @@ namespace Session14.Classes
         public override string ToString()
         {
             return string.Format("{0} {1} {2}", CourseCode, CourseName, Cost);
+        }
+
+        public int CompareTo(Course obj)
+        {
+            if (obj == null)
+                return 1;
+            if (obj != null)
+                return this.CourseCode.CompareTo(obj.CourseCode);
+            else
+                throw new ArgumentException("Object is not a course");
         }
     }
 }

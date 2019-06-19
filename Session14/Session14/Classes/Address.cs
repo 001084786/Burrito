@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Session14.Classes
 {
-    public class Address
+    public class Address : IComparable<Address>
     {
         public String Number { get; set; }
         public String Street { get; set; }
@@ -53,6 +53,16 @@ namespace Session14.Classes
         public override string ToString()
         {
             return string.Format("{0} {1} {2} {3} {4}", Number, Street, Suburb, Postcode, State);
+        }
+
+        public int CompareTo(Address obj)
+        {
+            if (obj == null)
+                return 1;
+            if (obj != null)
+                return this.Number.CompareTo(obj.Number);
+            else
+                throw new ArgumentException("Object is not an address");
         }
     }
 }

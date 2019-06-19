@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Session14.Classes
 {
-    public class Person
+    public class Person : IComparable<Person>
     {
         public int ID { get; set; }
         public String Name { get; set; }
@@ -42,8 +42,9 @@ namespace Session14.Classes
         }
 
         //Constructor
-        public Person(string name, string email, string telNum, Address address)
+        public Person(int id, string name, string email, string telNum, Address address)
         {
+            this.ID = id;
             this.Name = name;
             this.Email = email;
             this.TelNum = telNum;
@@ -51,7 +52,17 @@ namespace Session14.Classes
         }
         public override string ToString()
         {
-            return string.Format("{0} {1} {2} {3}", Name, Email, TelNum, Address);
+            return string.Format("{0} {1} {2} {3} {4}", ID, Name, Email, TelNum, Address);
+        }
+
+        public int CompareTo(Person obj)
+        {
+            if (obj == null)
+                return 1;
+            if (obj != null)
+                return this.ID.CompareTo(obj.ID);
+            else
+                throw new ArgumentException("Object is not a person");
         }
     }
 }

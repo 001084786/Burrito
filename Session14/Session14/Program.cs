@@ -11,35 +11,7 @@ namespace Session14
     {
         static void Main(string[] args)
         {
-            Course[] courseList =
-            {
-                new Course("a", "a", 10.00),
-                new Course("b", "b", 10.00),
-                new Course("c", "c", 10.00)
-            };
-
-            Array.Sort(courseList);
-            Console.WriteLine(courseList);
-            Console.ReadKey();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            /*
+            /* ============================== UNCOMMENT THIS SECTION TO VIEW THE COMPARE TO
             DateTime d1 = DateTime.Now;
 
             Console.WriteLine("Test Address Class");
@@ -51,23 +23,23 @@ namespace Session14
             Console.WriteLine("  a2 = " + a2);
             Console.WriteLine("  a3 = " + a3);
             Console.WriteLine();
-            Console.WriteLine("    Is a1 == a2: " + (a1 == a2) + " - Expected: True");
-            Console.WriteLine("    Is a1 == a3: " + (a1 == a3) + " - Expected: False");
+            Console.WriteLine("    Is a1 == a2: " + a1.CompareTo(a2) + " - Expected: True");
+            Console.WriteLine("    Is a1 == a3: " + a1.CompareTo(a3) + " - Expected: False");
             Console.ReadKey();
 
 
             Console.WriteLine();
             Console.WriteLine("Test Person Class");
-            Person p1 = new Person("Jack", "JackJack@gmail.com", "0411111111", a1);
-            Person p2 = new Person("Jack", "JackJack@gmail.com", "0411111111", a1);
-            Person p3 = new Person("Bob", "BobBob@gmail.com", "0422222222", a1);
+            Person p1 = new Person(1, "Jack", "JackJack@gmail.com", "0411111111", a1);
+            Person p2 = new Person(1, "Jack", "JackJack@gmail.com", "0411111111", a1);
+            Person p3 = new Person(2, "Bob", "BobBob@gmail.com", "0422222222", a1);
 
             Console.WriteLine("  p1 = " + p1);
             Console.WriteLine("  p2 = " + p2);
             Console.WriteLine("  p3 = " + p3);
             Console.WriteLine();
-            Console.WriteLine("    Is p1 == p2: " + (p1 == p2) + " - Expected: True");
-            Console.WriteLine("    Is p1 == p3: " + (p1 == p3) + " - Expected: False");
+            Console.WriteLine("    Is p1 == p2: " + p1.CompareTo(p2) + " - Expected: True");
+            Console.WriteLine("    Is p1 == p3: " + p1.CompareTo(p3) + " - Expected: False");
             Console.ReadKey();
 
 
@@ -81,8 +53,8 @@ namespace Session14
             Console.WriteLine("  c2 = " + c2);
             Console.WriteLine("  c3 = " + c3);
             Console.WriteLine();
-            Console.WriteLine("    Is c1 == c2: " + (c1 == c2) + " - Expected: True");
-            Console.WriteLine("    Is c1 == c3: " + (c1 == c3) + " - Expected: False");
+            Console.WriteLine("    Is c1 == c2: " + c1.CompareTo(c2) + " - Expected: True");
+            Console.WriteLine("    Is c1 == c3: " + c1.CompareTo(c3) + " - Expected: False");
             Console.ReadKey();
 
 
@@ -96,8 +68,8 @@ namespace Session14
             Console.WriteLine("  e2 = " + e2);
             Console.WriteLine("  e3 = " + e3);
             Console.WriteLine();
-            Console.WriteLine("    Is e1 == e2: " + (e1 == e2) + " - Expected: True");
-            Console.WriteLine("    Is e1 == e3: " + (e1 == e3) + " - Expected: False");
+            Console.WriteLine("    Is e1 == e2: " + e1.CompareTo(e2) + " - Expected: True");
+            Console.WriteLine("    Is e1 == e3: " + e1.CompareTo(e3) + " - Expected: False");
             Console.ReadKey();
 
 
@@ -111,16 +83,84 @@ namespace Session14
             Console.WriteLine("  s2 = " + s2);
             Console.WriteLine("  s3 = " + s3);
             Console.WriteLine();
-            Console.WriteLine("    Is s1 == s2: " + (s1 == s2) + " - Expected: True");
-            Console.WriteLine("    Is s1 == s3: " + (s1 == s3) + " - Expected: False");
-            Console.ReadKey();
+            Console.WriteLine("    Is s1 == s2: " + s1.CompareTo(s2) + " - Expected: True");
+            Console.WriteLine("    Is s1 == s3: " + s1.CompareTo(s3) + " - Expected: False");
             Console.ReadKey();
             */
+
+            Address address1 = new Address("15", "NotSoFast St", "SonicHedgeHog", "5480", "SA");
+            Person[] personList =
+            {
+                new Person(3, "Cold", "Ice@gmail.com", "0488888888", address1),
+                new Person(1, "Ape", "SmallGorilla@gmail.com", "0422222222", address1),
+                new Person(4, "Dank", "Memes@gmail.com", "0477777777", address1),
+                new Person(2, "Bepis", "Pepsi@gmail.com", "0499999999", address1),
+                new Person(1, "Ape", "SmallGorilla@gmail.com", "0422222222", address1)
+            };
+
+            ShowList(personList);
+            Console.ReadKey();
+
+            ShowAndSortNames(personList);
+            Console.ReadKey();
+
+            ShowAndSortEmails(personList);
+            Console.ReadKey();
+
+            ShowAndSortTell(personList);
+            Console.ReadKey();
+
+            ShowAndSortHash(personList);
+            Console.ReadKey();
         }
 
-        static void DisplayOrder<T>(T x, T y) where T : IComparable<T>
+        static void ShowList(Person[] list)
         {
+            Console.WriteLine();
+            Console.WriteLine("Unsorted List");
 
+            foreach (var item in list)
+                Console.WriteLine(item);
+        }
+
+        static void ShowAndSortNames(Person[] list)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Sort List by Name");
+
+            Array.Sort(list, PersonNameComparer.Instance);
+            foreach (var item in list)
+                Console.WriteLine(item);
+        }
+
+        static void ShowAndSortEmails(Person[] list)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Sort List by Email");
+
+            Array.Sort(list, PersonEmailComparer.Instance);
+            foreach (var item in list)
+                Console.WriteLine(item);
+        }
+
+        static void ShowAndSortTell(Person[] list)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Sort List by Tellephone Number");
+
+            Array.Sort(list, PersonTellComparer.Instance);
+            foreach (var item in list)
+                Console.WriteLine(item);
+        }
+
+        static void ShowAndSortHash(Person[] list)
+        {
+            Console.WriteLine();
+            Console.WriteLine("Sort List by HashSet Number");
+
+            Array.Sort(list, PersonHashSetComparer.Instance);
+            foreach (var item in list)
+                Console.WriteLine(item);
         }
     }
 }
