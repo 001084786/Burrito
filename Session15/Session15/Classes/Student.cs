@@ -11,7 +11,7 @@ namespace Session15.Classes
         public String Program { get; set; }
         public DateTime DateRegistered { get; set; }
         public Enrollment Enrollment { get; set; }
-        
+
 
         //Overload The == operator
         public static bool operator ==(Student x, Student y)
@@ -54,7 +54,7 @@ namespace Session15.Classes
         // toString()
         public override string ToString()
         {
-            return string.Format("{0} {1}", Program, DateRegistered.ToString("dd/MM/yyyy"));
+            return string.Format("{0} {1} {2} {3}", Program, DateRegistered.ToString("dd/MM/yyyy"), Name, Email);
         }
     }
 }

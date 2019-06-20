@@ -11,22 +11,27 @@ namespace Session15
     {
         static void Main(string[] args)
         {
+            Address a1 = new Address("1", "Street St", "Subby", "4035", "SA");
+            DateTime d1 = DateTime.Now;
+            Course c1 = new Course("5DD", "Database Design", 100.00);
+            Enrollment e1 = new Enrollment(1, d1, "A", "2", c1);
+
+
             //================================================================== CREATE LIST
             Console.WriteLine("Create an un-ordered list of students");
             Console.WriteLine();
-            Address a1 = new Address("1", "Street St", "Subby", "4035", "SA");
-            Person[] personList =
+            Student[] personList =
             {
-                new Person("Nugget", "Nugget@gmail.com", "0400000000", a1),
-                new Person("Chicken", "Chicken@gmail.com", "0411111111", a1),
-                new Person("Salmon", "Salmon@gmail.com", "0422222222", a1),
-                new Person("Pork", "Pork@gmail.com", "0433333333", a1),
-                new Person("Beef", "Beef@gmail.com", "0444444444", a1),
-                new Person("Lamb", "Lamb@gmail.com", "0455555555", a1),
-                new Person("Pasta", "Pasta@gmail.com", "0466666666", a1),
-                new Person("Playdough", "Playdough@gmail.com", "0477777777", a1),
-                new Person("Sausage", "Sausage@gmail.com", "0488888888", a1),
-                new Person("Prawn", "Prawn@gmail.com", "0499999999", a1)
+                new Student("Program", d1, "Nugget", "Nugget@gmail.com", "0400000000", a1, e1),
+                new Student("Program", d1, "Chicken", "Chicken@gmail.com", "0411111111", a1, e1),
+                new Student("Program", d1, "Salmon", "Salmon@gmail.com", "0422222222", a1, e1),
+                new Student("Program", d1, "Pork", "Pork@gmail.com", "0433333333", a1, e1),
+                new Student("Program", d1, "Beef", "Beef@gmail.com", "0444444444", a1, e1),
+                new Student("Program", d1, "Lamb", "Lamb@gmail.com", "0455555555", a1, e1),
+                new Student("Program", d1, "Pasta", "Pasta@gmail.com", "0466666666", a1, e1),
+                new Student("Program", d1, "Playdough", "Playdough@gmail.com", "0477777777", a1, e1),
+                new Student("Program", d1, "Sausage", "Sausage@gmail.com", "0488888888", a1, e1),
+                new Student("Program", d1, "Prawn", "Prawn@gmail.com", "0499999999", a1, e1)
             };
 
             ShowList(personList);
@@ -72,15 +77,15 @@ namespace Session15
 
         }
 
-        public static void ShowList(Person[] list)
+        public static void ShowList(Student[] list)
         {
             foreach (var item in list)
                 Console.WriteLine(item);
         }
 
-        public static void BubbleSort(Person[] list)
+        public static void BubbleSort(Student[] list)
         {
-            Person t;
+            Student t;
 
             for (int j = 0; j <= list.Length - 1; j++)
             {
@@ -96,20 +101,22 @@ namespace Session15
             }//End For
         }//End Bubble
 
-        public static string LinearSearch(Person[] list, string name)
+        public static string LinearSearch(Student[] list, string name)
         {
             for (int i = 0; i < list.Length; i++)
             {
                 if (list[i].Name.ToUpperInvariant() == name.ToUpperInvariant())
                 {
-                    return "'" + name + "' has been found at position " + i + "\n Person: " + list[i];
+                    return "'" + name + "' has been found at position " + i + "\n Student: " + list[i];
                 }
             }
             return "'" + name + "' not found";
         }
 
-        public static string BinarySearch(Person[] list, string name)
+        public static string BinarySearch(Student[] list, string name)
         {
+            //SORT FIRST
+            BubbleSort(list);
 
             int min = 0;
             int max = list.Length - 1;
@@ -122,7 +129,7 @@ namespace Session15
                     max = mid - 1;
                 if (list[mid].Name.ToUpperInvariant() == name.ToUpperInvariant())
                 {
-                    return "'" + name + "' found at position " + mid + "\n Person: " + list[mid];
+                    return "'" + name + "' found at position " + mid + "\n Student: " + list[mid];
                 }
                 if (min > max)
                     break;
