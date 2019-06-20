@@ -27,10 +27,15 @@ public class BookShoppingCartFileDAO {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public  static BookShoppingCartModel loadFromBinaryFile(Context context) throws IOException, ClassNotFoundException {
+    public static BookShoppingCartModel loadFromBinaryFile(Context context) throws IOException, ClassNotFoundException {
 
-        BookShoppingCartModel modelRead=null;
+        BookShoppingCartModel modelRead;
         //TODO
+        File file = new File(context.getFilesDir(), BOOKS_FILENAME);
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+        modelRead = (BookShoppingCartModel)ois.readObject();
+        ois.close();
+
         // Read in the Model from the binary file created by saveToBinaryFile
         return modelRead;
     }
@@ -38,11 +43,15 @@ public class BookShoppingCartFileDAO {
     /**
      *
      * @param context The context(Activity) that owns the file
-     * @param bookShoppingCartModel The BookShopiingCartModel to be saved.
+     * @param bookShoppingCartModel The BookShoppingCartModel to be saved.
      * @throws IOException
      */
     public static void saveToBinaryFile(Context context, BookShoppingCartModel bookShoppingCartModel) throws IOException {
         //TODO
         // Write out the Model to a binary file
+        File file = new File(context.getFilesDir(), BOOKS_FILENAME);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(file));
+        objectOutputStream.writeObject(bookShoppingCartModel);
+        objectOutputStream.close();
     }
 }

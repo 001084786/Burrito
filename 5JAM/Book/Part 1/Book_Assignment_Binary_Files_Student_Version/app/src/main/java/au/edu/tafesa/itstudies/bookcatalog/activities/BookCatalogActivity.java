@@ -61,12 +61,12 @@ public class BookCatalogActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
-        //loadFromFile();
+        loadFromFile();
     }
 
     @Override
     protected void onPause() {
-       // saveToFile();
+        saveToFile();
         super.onPause();
     }
 
