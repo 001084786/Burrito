@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="Classes\Address.cs" />
     <Compile Include="Classes\Course.cs" />
+    <Compile Include="Classes\DoublyLinkedList.cs" />
     <Compile Include="Classes\Enrollment.cs" />
+    <Compile Include="Classes\LinkedListNode.cs" />
     <Compile Include="Classes\Person.cs" />
     <Compile Include="Classes\PersonNameComparer.cs" />
     <Compile Include="Classes\Student.cs" />
