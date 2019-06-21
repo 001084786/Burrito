@@ -110,7 +110,7 @@ namespace Session16.Classes
             LinkedListNode<T> current = Head;
             while (current != null)
             {
-                if (current != null)
+                if (current.Value.Equals(item))
                 {
                     return true;
                 }
