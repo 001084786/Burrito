@@ -91,16 +91,15 @@ namespace Session16.Classes
                 }
                 else
                 {
-                    Tail.Previous = null;
+                    Tail.Previous.Next = null;
                     Tail = Tail.Previous;
                 }
-                Head = Head.Next;
 
                 Count--;
             }
         }
 
-        public int Count { get; set; }
+        public int Count { get; private set; }
 
         public void Add(T item)
         {
@@ -127,6 +126,65 @@ namespace Session16.Classes
                 array[arrayIndex++] = current.Value;
                 current = current.Next;
             }
+        }
+        public bool IsReadOnly
+        {
+            get
+            {
+                return false;
+            }
+        }
+        public bool Remove(T item)
+        {
+            LinkedListNode<T> previous = null;
+            LinkedListNode<T> current = Head;
+
+            while (current != null)
+            {
+                if (current.Value.Equals(item))
+                {
+                    if (previous != null)
+                    {
+                        previous.Next = current.Next;
+
+                        if (current.Next == null)
+                        {
+                            Tail = previous;
+                        }
+
+                        Count--;
+                    }
+                    else
+                    {
+                        RemoveFirst();
+                    }
+                    return true;
+                }
+
+                previous = current;
+                current = current.Next;
+            }
+            return false;
+        }
+
+        System.Collections.Generic.IEnumerator<T> System.Collections.Generic.IEnumerable<T>.GetEnumerator()
+        {
+            LinkedListNode<T> current = Head;
+            while (current != null)
+            {
+                yield return current.Value;
+                current = current.Next;
+            }
+        }
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return ((System.Collections.Generic.IEnumerable<T>)this).GetEnumerator();
+        }
+        public void Clear()
+        {
+            Head = null;
+            Tail = null;
+            Count = 0;
         }
     }
 }
