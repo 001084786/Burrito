@@ -63,7 +63,7 @@ namespace Session15
             Console.WriteLine();
 
 
-            //================================================================== LINEAR SEARCH
+            //================================================================== BINARY SEARCH
             Console.WriteLine("Binary Search for Name");
             Console.Write("Please Insert Name: ");
             name = Console.ReadLine();
